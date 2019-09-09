@@ -13,7 +13,7 @@ class WordBoard:
     """
 
 
-    def __init__(swhat is pelf, in_word=None):
+    def __init__(self, in_word=None):
         # Take or generate a word, and also create a randomized copy too
         self.ans_word = None
         self.board = list()
