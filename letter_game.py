@@ -42,7 +42,7 @@ class WordBoard:
         return is_correct
 
     def generate_random_word(self):
-        # This will pick a random work with `randrange` from the words.txt file
+        # This will pick a random word with `randrange` from the words.txt file
         temp = words[randrange(0, len(words)-1)]
         self.set_word(temp)
 
