@@ -87,7 +87,7 @@ if __name__ == '__main__':
         fileName = sys.argv[1]
         print("Using " + fileName)
     else:
-        fileName = 'popular.txt'
+        fileName = 'popular9.txt'
         print("Using popular.txt")
     import_words(fileName)
     wb = WordBoard()

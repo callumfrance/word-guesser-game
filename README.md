@@ -20,10 +20,10 @@ folder, with `python letter-game.py`.
 *Quickstart:* `python letter-game.py`
 
 *Other options:*
-`python letter-game.py popular.txt` - contains the more popular English words
+`python letter-game.py popular9.txt` - contains the more popular English words
 (easy)
 
-`python letter-game.py words.txt` - contains more abstract English words
+`python letter-game.py words9.txt` - contains more abstract English words
 (sometimes harder)
 
 Whilst running, typing either `--help` or `--ans` will display the solution.
