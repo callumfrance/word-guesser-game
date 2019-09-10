@@ -1,12 +1,7 @@
 from random import shuffle, randrange
+import sys
 
-# Import the 9-letter words into the program's memory from the word list
-words = list()
-with open('words.txt') as fo:
-    for line in fo:
-        temp = line.rstrip()
-        if(len(temp) == 9):
-            words.append(temp)
+words = list() # Global variable that contains all of the words
 
 class WordBoard:
     """Function that contains the word board and the correct word.
@@ -60,7 +55,7 @@ def print_board(in_board):
     print()
     print('+-------+')
 
-    
+
 def play_game(wb):
     # This is the 'view' of the game to the console for the player
     the_guess = False
@@ -77,8 +72,24 @@ def play_game(wb):
             print("Not correct, try again")
 
 
+def import_words(fileName):
+    # Import the 9-letter words into the program's memory from the word list
+    with open(fileName) as fo:
+        for line in fo:
+            temp = line.rstrip()
+            if(len(temp) == 9):
+                words.append(temp)
+
+
 if __name__ == '__main__':
     # Create the game object and then play the game
+    if (len(sys.argv) == 2):
+        fileName = sys.argv[1]
+        print("Using " + fileName)
+    else:
+        fileName = 'popular.txt'
+        print("Using popular.txt")
+    import_words(fileName)
     wb = WordBoard()
     print("Starting")
     play_game(wb)
