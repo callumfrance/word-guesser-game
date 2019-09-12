@@ -17,9 +17,12 @@ Next, run the program by opening cmd or terminal, navigating to inside this
 folder, with `python letter-game.py`.
 
 #### Options
-*Quickstart:* `python letter-game.py`
+*Quickstart:*
+
+`python letter-game.py`
 
 *Other options:*
+
 `python letter-game.py popular9.txt` - contains the more popular English words
 (easy)
 
@@ -27,3 +30,5 @@ folder, with `python letter-game.py`.
 (sometimes harder)
 
 Whilst running, typing either `--help` or `--ans` will display the solution.
+
+Whilst running, typing `--exit` will quit the game and display stats.
