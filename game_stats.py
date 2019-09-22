@@ -1,9 +1,9 @@
 from word_board import WordBoard
 
+
 class GameStats:
     """Class that contains game states and manages the game state
     """
-
     def __init__(self, in_game_board=None):
         self.game_board = None
         self.board_cnt = 0
@@ -13,30 +13,25 @@ class GameStats:
         else:
             self.set_game_board(WordBoard())
 
-
     def set_game_board(self, in_game_board):
         self.game_board = in_game_board
-
 
     def next_game_board(self):
         self.game_board = WordBoard()
         self.board_cnt = self.board_cnt + 1
 
-
     def process_correct(self):
         print("Correct")
         self.correct = self.correct + 1
-
 
     def print_stats(self):
         print("Correct guesses: " + str(self.correct))
         print("Boards generated: " + str(self.board_cnt))
 
-
     def play_game(self):
         # This is the 'view' of the game to the console for the player
         will_exit = False
-        while(not will_exit):
+        while (not will_exit):
             print(self.game_board.print_board())
             user_in = input('\n>')
             if ((user_in == '--ans') or (user_in == '--help')):
@@ -51,5 +46,3 @@ class GameStats:
                 will_exit = True
             else:
                 print("Not correct, try again")
-
-

@@ -2,7 +2,6 @@ import sys
 from game_stats import GameStats
 from word_board import WordBoard
 
-
 if __name__ == '__main__':
     # Create the game object and then play the game
     if (len(sys.argv) == 2):
