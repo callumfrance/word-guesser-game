@@ -17,7 +17,7 @@ class GameStats:
         self.game_board = in_game_board
 
     def next_game_board(self):
-        self.game_board = WordBoard()
+        self.game_board.generate_random_word()
         self.board_cnt = self.board_cnt + 1
 
     def process_correct(self):
