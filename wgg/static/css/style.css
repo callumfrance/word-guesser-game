@@ -1,0 +1,18 @@
+* {
+	font-style: Times, serif;
+	background: WhiteSmoke;
+ }
+
+ .flashes, .flashes * {
+	 font-style: italic;
+	 background: LightPink;
+ }
+
+ .flashes.container {
+	 padding: 8px;
+ }
+
+ code {
+	 font-size: 20px;
+ }
+
