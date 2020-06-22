@@ -8,51 +8,9 @@
 	<script type=text/javascript>
 		$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 	</script>
+    <script src="static/js/wgg.js" ></script>
 </head>
 <body>
-<script>
-    // Runs once on page load to do initial populate of word board
-    $.getJSON($SCRIPT_ROOT + '/_scramble_word', {}, function(data) {
-        $("#result").html(data.result);
-    });
-    $.getJSON($SCRIPT_ROOT + '/_process_guess', {
-        initial_set: 'Truey',
-    }, function(data) {
-        $("#stats").html(data.stats);
-    });
-</script>
-<script type=text/javascript>
-  $(function() {
-    $('a#calculate').bind('click', function() {
-      $.getJSON($SCRIPT_ROOT + '/_give_up_answer', {}, function(data) {
-        $("#result").html(data.result),
-        $("#stats").html(data.stats);
-      });
-      return false;
-    });
-  });
-</script>
-
-<script type=text/javascript>
-  $(function() {
-    $('#guessSubmit').bind('click', function() {
-      $.getJSON($SCRIPT_ROOT + '/_process_guess', {
-          guess: $('input[name="guess"]').val(),
-          initial_set: 'False',
-        }, function(data) {
-        $("#stats").html(data.stats);
-      });
-      return false;
-    });
-    $('#guessSubmit').bind('click', function() {
-      $.getJSON($SCRIPT_ROOT + '/_check_word_refresh', {}, function(data) {
-        $("#result").html(data.result);
-      });
-      return false;
-    });
-  });
-</script>
-
 <h1>Word Guesser Game</h1>
 <div class="board_section">
     <div id="result">?</div>

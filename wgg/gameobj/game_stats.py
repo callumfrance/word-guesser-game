@@ -12,23 +12,27 @@ class GameStats:
         self.failures = -1 # Starts at -1 + 1 = 1 accounting for F5's
         self.correct_words = list()
         self.failure_words = list()
+        self.current_word = ''
         self.past_words = list()
 
-    def process_correct(self):
+    def process_correct(self, incoming_word):
+        print("New Correct")
         self.correct += 1
         self.board_cnt += 1
-        self.correct_words.append(self.failure_words.pop())
-        self.past_words.append(self.correct_words[-1])
+        self.correct_words.append(self.current_word)
+        self.past_words.append(self.current_word)
+        self.current_word = incoming_word
 
-    def process_failure(self, in_word):
-        print("New failure")
+    def process_failure(self, incoming_word):
+        print("New Failure")
         self.failures += 1
         self.board_cnt += 1
-        self.failure_words.append(in_word)
-        self.past_words.append(in_word)
+        self.failure_words.append(self.current_word)
+        self.past_words.append(self.current_word)
+        self.current_word = incoming_word
 
     def process_incorrect(self):
-        print("New incorrect")
+        print("New Incorrect")
         self.incorrect += 1
 
     def get_stats(self):
@@ -43,10 +47,10 @@ class GameStats:
                 "correct": self.correct,
                 "incorrect": self.incorrect,
                 "failures": self.failures,
+                "current": self.current_word,
                 "correct_words": self.correct_words,
                 "failure_words": self.failure_words[:-1],
                 }
-        x = dumps(stats_json, sort_keys=True, separators=(',', ':'))
-        print("X is: ")
-        print(x)
+        x = dumps(stats_json, separators=(',', ':'))
+        print("GS Stats: " + x)
         return(x)
