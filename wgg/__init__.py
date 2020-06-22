@@ -28,58 +28,53 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     setup()
 
-    @app.route('/_scramble_word')
-    def scramble_word():
-        WB.generate_random_word()
+    @app.route('/_word_page_initial')
+    def word_page_initials():
+        GS.current_word = WB.ans_word
         x = VIEW.v_board(WB.board)
-        print("Scrambled- " + WB.ans_word)
-        return jsonify(result=x)
+        y = VIEW.v_stats(GS.get_stats_json())
+        return jsonify(result=x, stats=y)
 
-    @app.route('/_check_word_refresh')
     def check_word_refresh():
-        x = VIEW.v_board(WB.board)
-        print(GS.past_words)
+        """Updates the Word Board displayed if it is old on the page.
+
+        i.e. checks if the displayed word has been done already and then
+        scrambles and displays a new word.
+        """
         if WB.ans_word in GS.past_words:
-            print("ans word is in past words- " + WB.ans_word)
-            return(scramble_word())
-        print("ans word is NOT in past words- " + WB.ans_word)
-        return jsonify(result=x)
+            WB.generate_random_word()
+        x = VIEW.v_board(WB.board)
+        return x
 
     @app.route('/_give_up_answer')
     def get_answer():
-        GS.process_failure(WB.ans_word)
-        stats = VIEW.v_stats(GS.get_stats_json())
+        """Runs when the user wants the solution shown to proceed to next.
+        """
         WB.generate_random_word()
         x = VIEW.v_board(WB.board)
+        GS.process_failure(WB.ans_word)
         y = VIEW.v_stats(GS.get_stats_json())
-        print(jsonify(result=x, stats=y))
         return(jsonify(result=x, stats=y))
 
     @app.route('/_process_guess')
     def process_guess():
-        init_set = request.args.get('initial_set')
-        if init_set == 'Truey':
-            GS.process_failure(WB.ans_word)
-        if init_set != 'Truey':
-            a_guess = request.args.get('guess')
-            result = None
-            stats = None
-            if WB.check_answer(a_guess):
-                result = VIEW.v_print("Correct")
-                GS.process_correct()
-            else:
-                print(init_set + " check_answer is not True")
-                result = VIEW.v_print("Incorrect")
-                GS.process_incorrect()
+        """Determines correctness of a guess and channels result accordingly.
+        """
+        a_guess = request.args.get('guess')
 
-        stats = VIEW.v_stats(GS.get_stats_json())
+        if WB.check_answer(a_guess):
+            GS.process_correct()
+        else:
+            GS.process_incorrect()
 
-        return jsonify(stats=stats)
+        x = check_word_refresh()
+        y = VIEW.v_stats(GS.get_stats_json())
+
+        return jsonify(result=x, stats=y)
 
     @app.route('/')
     def base():
-        x = scramble_word()
-        print(WB.ans_word)
+        print("Base route ans_word: " + WB.ans_word)
         return render_template('test.html')
 
     return app

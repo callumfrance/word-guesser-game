@@ -6,17 +6,17 @@ class GameStats:
     """Class that contains game states and manages the game state
     """
     def __init__(self):
-        self.board_cnt = 0 # Starts at 0 + 1 = 1 accounting for F5's
+        self.board_cnt = 1
         self.correct = 0
         self.incorrect = 0
-        self.failures = -1 # Starts at -1 + 1 = 1 accounting for F5's
+        self.failures = 0
         self.correct_words = list()
         self.failure_words = list()
         self.current_word = ''
         self.past_words = list()
 
     def process_correct(self, incoming_word):
-        print("New Correct")
+        print("New Correct", self.current_word, incoming_word)
         self.correct += 1
         self.board_cnt += 1
         self.correct_words.append(self.current_word)
@@ -24,7 +24,7 @@ class GameStats:
         self.current_word = incoming_word
 
     def process_failure(self, incoming_word):
-        print("New Failure")
+        print("New Failure", self.current_word, incoming_word)
         self.failures += 1
         self.board_cnt += 1
         self.failure_words.append(self.current_word)
@@ -44,12 +44,13 @@ class GameStats:
 
     def get_stats_json(self):
         stats_json = {
+                "boards": self.board_cnt,
                 "correct": self.correct,
                 "incorrect": self.incorrect,
                 "failures": self.failures,
                 "current": self.current_word,
                 "correct_words": self.correct_words,
-                "failure_words": self.failure_words[:-1],
+                "failure_words": self.failure_words,
                 }
         x = dumps(stats_json, separators=(',', ':'))
         print("GS Stats: " + x)
