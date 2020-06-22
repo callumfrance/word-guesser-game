@@ -7,9 +7,9 @@ from flask import (Flask,
         url_for,
 )
 
-# from .gameobj.game_stats import GameStats
-# from .gameobj.word_board import WordBoard
-# from .gameobj.view_html import ViewHTML
+from .gameobj.game_stats import GameStats
+from .gameobj.word_board import WordBoard
+from .gameobj.view_html import ViewHTML
 
 FILENAME = ''
 VIEW = ''
@@ -20,7 +20,7 @@ GS = ''
 def setup(fn='wgg/static/wordlists/popular9.txt'):
     global FILENAME, VIEW, WB, GS
     FILENAME = fn
-    VIEW = ViewCLI()
+    VIEW = ViewHTML()
     WB = WordBoard(FILENAME)
     GS = GameStats()
 
@@ -54,13 +54,25 @@ def main_loop():
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
+    setup()
     
     @app.route('/_scramble_word')
     def scramble_word():
-        return jsonify(result="answer")
+        WB.generate_random_word()
+        x = VIEW.v_board(WB.board)
+        return jsonify(result=x)
+
+    @app.route('/_process_guess')
+    def process_guess():
+        a_guess = request.args.get('guess')
+        x = VIEW.v_stats(GS) + a_guess
+        if x == '':
+            x = "incredibly done"
+        return jsonify(stats=x)
 
     @app.route('/')
     def base():
+        x = scramble_word()
         return render_template('test.html')
 
     return app

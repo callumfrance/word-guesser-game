@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title></title>
+    <link rel="stylesheet" href="static/css/board.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<script type=text/javascript>
 		$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
@@ -13,15 +14,42 @@
   $(function() {
     $('a#calculate').bind('click', function() {
       $.getJSON($SCRIPT_ROOT + '/_scramble_word', {}, function(data) {
-        $("#result").text(data.result);
+        $("#result").html(data.result);
       });
       return false;
     });
   });
 </script>
 
-<h1>jQuery Example</h1>
-<span id=result>?</span>
-<p><a href=# id=calculate>calculate server side</a>
+<script type=text/javascript>
+  $(function() {
+    $('#guessSubmit').bind('click', function() {
+      $.getJSON($SCRIPT_ROOT + '/_process_guess', {
+          guess: $('input[name="guess"]').val()
+        }, function(data) {
+        $("#stats").html(data.stats);
+      });
+      return false;
+    });
+  });
+</script>
+
+<h1>Word Guesser Game</h1>
+<div class="board_section">
+    <div id="result">?</div>
+</div>
+<p class="board_section"><a href=# id=calculate>calculate server side</a>
+
+<form>
+    <div class="form-group">
+        <label for="fguess">Your Guess:</label>
+        <input type="text" class="form-control" name="guess" id="fguess" aria-describedby="guessHelp" placeholder="befuddled">
+        <small id="guessHelp" class="form-text text-muted">Enter your guess for the nine letter word here</small>
+        <button type="guessSubmit" id="guessSubmit" class="btn btn-primary">Guess</button>
+    </div>
+</form>
+<div class="stat_section">
+    <div id="stats">?</div>
+</div>
 </body>
 </html>

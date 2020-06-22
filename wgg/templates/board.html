@@ -7,11 +7,7 @@
 {% endblock %}
 
 {% block content %}
-	<h1>n-queens board</h1>
-	<code>n = {{ n_size }}</code>
-
-	<button onClick="window.location.reload();">Re-generate</button>
-	<button><a href="{{ url_for('board_select') }}" >Reselect</a></button>
+	<h1>wgg board</h1>
 
 	<div class="board_section">
 		{{ board_display | safe }}

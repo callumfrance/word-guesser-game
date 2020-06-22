@@ -1,4 +1,4 @@
-from word_board import WordBoard
+from .word_board import WordBoard
 
 
 class GameStats:
