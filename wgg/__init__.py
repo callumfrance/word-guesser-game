@@ -24,55 +24,62 @@ def setup(fn='wgg/static/wordlists/popular9.txt'):
     WB = WordBoard(FILENAME)
     GS = GameStats()
 
-def main_loop():
-    will_exit = False
-    while (not will_exit):
-        VIEW.v_board(WB.board)
-        has_answer = False
-        while not has_answer:
-            u_in = VIEW.v_user_in()
-            if ((u_in == '--ans') or (u_in == '--help')):
-                VIEW.v_result(WB.ans_word)
-                GS.process_failure()
-                has_answer = True
-                break
-            elif (WB.check_answer(u_in)):
-                VIEW.v_print("Correct")
-                GS.process_correct()
-                has_answer = True
-                break
-            elif (u_in == '--exit'):
-                VIEW.v_stats(GS.get_stats())
-                will_exit = True
-                break
-            else:
-                VIEW.v_print("Not correct, try again")
-                GS.process_incorrect()
-            VIEW.v_board(WB.board)
-        WB.generate_random_word()
-
-
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     setup()
-    
+
     @app.route('/_scramble_word')
     def scramble_word():
         WB.generate_random_word()
         x = VIEW.v_board(WB.board)
+        print("Scrambled- " + WB.ans_word)
         return jsonify(result=x)
+
+    @app.route('/_check_word_refresh')
+    def check_word_refresh():
+        x = VIEW.v_board(WB.board)
+        print(GS.past_words)
+        if WB.ans_word in GS.past_words:
+            print("ans word is in past words- " + WB.ans_word)
+            return(scramble_word())
+        print("ans word is NOT in past words- " + WB.ans_word)
+        return jsonify(result=x)
+
+    @app.route('/_give_up_answer')
+    def get_answer():
+        GS.process_failure(WB.ans_word)
+        stats = VIEW.v_stats(GS.get_stats_json())
+        WB.generate_random_word()
+        x = VIEW.v_board(WB.board)
+        y = VIEW.v_stats(GS.get_stats_json())
+        print(jsonify(result=x, stats=y))
+        return(jsonify(result=x, stats=y))
 
     @app.route('/_process_guess')
     def process_guess():
-        a_guess = request.args.get('guess')
-        x = VIEW.v_stats(GS) + a_guess
-        if x == '':
-            x = "incredibly done"
-        return jsonify(stats=x)
+        init_set = request.args.get('initial_set')
+        if init_set == 'Truey':
+            GS.process_failure(WB.ans_word)
+        if init_set != 'Truey':
+            a_guess = request.args.get('guess')
+            result = None
+            stats = None
+            if WB.check_answer(a_guess):
+                result = VIEW.v_print("Correct")
+                GS.process_correct()
+            else:
+                print(init_set + " check_answer is not True")
+                result = VIEW.v_print("Incorrect")
+                GS.process_incorrect()
+
+        stats = VIEW.v_stats(GS.get_stats_json())
+
+        return jsonify(stats=stats)
 
     @app.route('/')
     def base():
         x = scramble_word()
+        print(WB.ans_word)
         return render_template('test.html')
 
     return app

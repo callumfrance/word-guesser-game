@@ -10,11 +10,23 @@
 	</script>
 </head>
 <body>
+<script>
+    // Runs once on page load to do initial populate of word board
+    $.getJSON($SCRIPT_ROOT + '/_scramble_word', {}, function(data) {
+        $("#result").html(data.result);
+    });
+    $.getJSON($SCRIPT_ROOT + '/_process_guess', {
+        initial_set: 'Truey',
+    }, function(data) {
+        $("#stats").html(data.stats);
+    });
+</script>
 <script type=text/javascript>
   $(function() {
     $('a#calculate').bind('click', function() {
-      $.getJSON($SCRIPT_ROOT + '/_scramble_word', {}, function(data) {
-        $("#result").html(data.result);
+      $.getJSON($SCRIPT_ROOT + '/_give_up_answer', {}, function(data) {
+        $("#result").html(data.result),
+        $("#stats").html(data.stats);
       });
       return false;
     });
@@ -25,9 +37,16 @@
   $(function() {
     $('#guessSubmit').bind('click', function() {
       $.getJSON($SCRIPT_ROOT + '/_process_guess', {
-          guess: $('input[name="guess"]').val()
+          guess: $('input[name="guess"]').val(),
+          initial_set: 'False',
         }, function(data) {
         $("#stats").html(data.stats);
+      });
+      return false;
+    });
+    $('#guessSubmit').bind('click', function() {
+      $.getJSON($SCRIPT_ROOT + '/_check_word_refresh', {}, function(data) {
+        $("#result").html(data.result);
       });
       return false;
     });
@@ -38,7 +57,7 @@
 <div class="board_section">
     <div id="result">?</div>
 </div>
-<p class="board_section"><a href=# id=calculate>calculate server side</a>
+<p class="board_section"><a href=# id=calculate>Show solution</a>
 
 <form>
     <div class="form-group">

@@ -1,4 +1,5 @@
 from .view_abstract import ViewAbstract
+from json import loads
 
 
 class ViewHTML(ViewAbstract):
@@ -41,21 +42,29 @@ class ViewHTML(ViewAbstract):
     def v_result(self, ans_str):
         """Method used to output the result of a user's guess
         """
-        print("Answer was " + ans_str)
+        return("Answer was " + ans_str)
 
     def v_print(self, in_string):
         """Generic view print statement
         """
-        print(in_string)
+        return(in_string)
 
 
-    def v_stats(self, in_stats):
+    def v_stats(self, in_stats_js_str):
         """Prints all the stats for the current user's run
         """
+        in_stats = loads(in_stats_js_str)
         x = self._row_st
-        x += str(in_stats.board_cnt)
-        x += str(in_stats.correct)
-        x += str(in_stats.incorrect)
-        x += str(in_stats.failures)
+        x += "Correct " + str(in_stats["correct"])
+        x += self._end + self._row_st
+        x += "Incorrect " + str(in_stats["incorrect"])
+        x += self._end + self._row_st
+        x += "Failures " + str(in_stats["failures"])
+        x += self._end + self._row_st
+        if in_stats["correct_words"]:
+            x += "Correct Words " + str(in_stats["correct_words"])
+            x += self._end + self._row_st
+        if in_stats["failure_words"]:
+            x += "Failure Words " + str(in_stats["failure_words"])
         x += self._end
         return(x)
