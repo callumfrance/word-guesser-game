@@ -1,0 +1,47 @@
+/*
+ * Wild Style Pop
+ */
+
+/* Colour palette */
+:root {
+    --wild-txt-color: #141414;
+    --wild-h-color: #141414;
+    --wild-invert-color: #EEF0F2;
+    --wild-para-color: var(--wild-txt-color);
+
+    --wild-bg-color: #EEF0F2;
+    --wild-up-color: #EEF0F2;
+    --wild-mid-color: #6D6A75;
+    --wild-down-color: #141414;
+
+    --wild-banner-color: #EEF0F2;
+
+    --wild-secondary-color: #0D21A1;
+    --wild-primary-color: #EA9010;
+}
+
+:root {
+    --hry-image: url(../img/hrwhite.png);
+
+    /* used for whiteout image */
+    --stockywhite-image: url(../img/stockywhite.png);
+    --longwhite1x7-image: url(../img/1x7longwhite.png);
+    --tallwhite-image: url(../img/tallwhite.png);
+
+    /* used for opacity filter effect on row divs */
+    --filter-row-lightener: white;
+    --filter-row-opacity: opacity(0.7);
+
+    /* used for second filter effect on row divs */
+    --filter-row-secondary-A: saturate(0);
+    --filter-row-secondary-B: saturate(0);
+    --filter-row-secondary-C: saturate(0);
+
+    /* used for link hover */
+    --link-hover-effect: none;
+    --link-hover: var(--wild-secondary-color);
+
+    /* used for active hover */
+    --link-active-effect: none;
+    --link-active: var(--wild-primary-color);
+}

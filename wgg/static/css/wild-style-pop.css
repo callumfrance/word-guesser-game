@@ -1,0 +1,52 @@
+/*
+ * Wild Style Pop
+ */
+
+/* Colour palette */
+:root {
+    /*
+     *https://coolors.co/e94f37-ffe757-06070e-197278-f5cac3-84a59d-63a375-2176ae
+     */
+    --wild-txt-color: #242325;
+    --wild-h-color: #FFE757;
+    --wild-invert-color: white;
+    --wild-para-color: var(--wild-invert-color);
+
+    --wild-bg-color: #197278;
+    --wild-up-color: #393E41;
+    /* --wild-mid-color: #F4D4F8; */
+    --wild-mid-color: #E94F37;
+    --wild-down-color: #FFE757;
+
+    --wild-banner-color: #E94F37;
+
+    --wild-secondary-color: #E94F37;
+    --wild-primary-color: #B6D6F9;
+}
+
+:root {
+    /* used for hr image */
+    --hry-image: url(../img/Long_Green.png);
+
+    /* used for whiteout image */
+    --stockywhite-image: none;
+    --longwhite1x7-image: none;
+    --tallwhite-image: none;
+
+    /* used for opacity filter effect on row divs */
+    --filter-row-lightener: #242325;
+    --filter-row-opacity: opacity(0.2);
+
+    /* used for second filter effect on row divs */
+    --filter-row-secondary-A: hue-rotate(330deg);
+    --filter-row-secondary-B: hue-rotate(45deg);
+    --filter-row-secondary-C: hue-rotate(255deg);
+
+    /* used for link hover */
+    --link-hover-effect: hue-rotate(145deg);
+    --link-hover: none;
+
+    /* used for active hover */
+    --link-active-effect: hue-rotate(225deg);
+    --link-active: none;
+}

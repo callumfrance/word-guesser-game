@@ -5,18 +5,26 @@
     <title></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="static/css/board.css">
+    <link rel="stylesheet" type="text/css" href="static/css/wild-style-base.css?version=0.1">
+    <link rel="stylesheet" type="text/css" id="popTheme" href="static/css/wild-style-pop.css?version=0.1">
+    <link rel="stylesheet" type="text/css" id="formalTheme" href="static/css/wild-style-formal.css?version=0.1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
     <script type=text/javascript>
         $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
     </script>
     <script src="static/js/wgg.js" ></script>
+    <script src="static/js/themeToggle.js" ></script>
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="container</div>-fluid">
+    {% block nav %}
+        {% include "partials/nav.html" %}
+    {% endblock %}
+
         <div class="row">
             <div class="col-1"></div>
             <div class="col-11">
-                <h1>Word Guesser Game</h1>
+                <h1>Nine Letter Word Scramble</h1>
             </div>
         </div>
         <div class="row">

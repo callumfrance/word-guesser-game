@@ -1,5 +1,5 @@
-body {
-    background: lightblue;
+.board.alpha {
+    background: var(--wild-invert-color);
 }
 
 .board_section * {
@@ -50,10 +50,12 @@ button a {
 
 .board_section .edge, .horizontal, .vertical {
 	background: grey;
+	background: var(--wild-mid-color);
 }
 
 .board_section .queen {
 	background: goldenrod;
+	background: var(--wild-primary-color);
 }
 
 .board_section .blank {
