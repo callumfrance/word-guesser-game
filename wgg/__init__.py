@@ -63,7 +63,8 @@ def create_app(test_config=None):
         a_guess = request.args.get('guess')
 
         if WB.check_answer(a_guess):
-            GS.process_correct()
+            WB.generate_random_word()
+            GS.process_correct(WB.ans_word)
         else:
             GS.process_incorrect()
 

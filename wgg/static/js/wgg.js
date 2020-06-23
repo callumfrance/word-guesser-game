@@ -6,7 +6,7 @@ $.getJSON($SCRIPT_ROOT + '/_word_page_initial', {}, function(data) {
 
 // When the user wants the answer, this scripts adds a failure and resets
 $(function() {
-  $('a#calculate').bind('click', function() {
+  $('#calculate').bind('click', function() {
     $.getJSON($SCRIPT_ROOT + '/_give_up_answer', {}, function(data) {
       $("#result").html(data.result),
       $("#stats").html(data.stats);
