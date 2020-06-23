@@ -37,7 +37,7 @@ class WordBoard:
     def load_words(self, in_words_file_name=None):
         # Loads words into object from filename, either provided or defaulted
         if (not in_words_file_name):
-            in_words_file_name = 'wordlists/popular9.txt'
+            in_words_file_name = "wgg/static/wordlists/popular9.txt"
         with open(in_words_file_name) as fo:
             print("Opening " + in_words_file_name)
             for line in fo:
@@ -49,18 +49,6 @@ class WordBoard:
         # This will pick a random word with `randrange` from the words.txt file
         temp = self.words[randrange(0, len(self.words) - 1)]
         self.set_word(temp)
-
-    def print_board(self):
-        # This is how the board is represented in the output
-        board_str = "+-------+"
-        for i, n in enumerate(self.board):
-            if (i % 3 == 0):
-                board_str = board_str + "\n|"
-            board_str = board_str + " " + n
-            if (i % 3 == 2):
-                board_str = board_str + " |"
-        board_str = board_str + "\n+-------+"
-        return (board_str)
 
     def print(self):
         # Prints details about the wordboard object

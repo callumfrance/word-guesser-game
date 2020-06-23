@@ -1,0 +1,63 @@
+.board.alpha {
+    background: var(--wild-invert-color);
+}
+
+.board_section * {
+	font-family: "Lucida Console", Monaco, monospace;
+	font-size: 24px;
+}
+
+code {
+	font-weight: lighter;
+	font-style: italic;
+}
+
+button {
+	background: peachpuff;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+button a {
+	background: peachpuff;
+	color: inherit;
+	text-decoration: none;
+}
+
+.board_section .content {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+
+.board_section .board {
+	width: 50px;
+	height: 50px;
+	display: block;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 50px;
+}
+
+.board_section .board.row {
+	display: flex;
+	flex-direction: row;
+}
+
+.board_section .row {
+	width: 100%;
+}
+
+.board_section .edge, .horizontal, .vertical {
+	background: grey;
+	background: var(--wild-mid-color);
+}
+
+.board_section .queen {
+	background: goldenrod;
+	background: var(--wild-primary-color);
+}
+
+.board_section .blank {
+	background: linen;
+}

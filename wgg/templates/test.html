@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/board.css">
+    <link rel="stylesheet" type="text/css" href="static/css/wild-style-base.css?version=0.1">
+    <link rel="stylesheet" type="text/css" id="popTheme" href="static/css/wild-style-pop.css?version=0.1">
+    <link rel="stylesheet" type="text/css" id="formalTheme" href="static/css/wild-style-formal.css?version=0.1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    <script type=text/javascript>
+        $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+    <script src="static/js/wgg.js" ></script>
+    <script src="static/js/themeToggle.js" ></script>
+</head>
+<body>
+    <div class="container</div>-fluid">
+    {% block nav %}
+        {% include "partials/nav.html" %}
+    {% endblock %}
+
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-11">
+                <h1>Nine Letter Word Scramble</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-11" style="padding-left: 30px;">
+                <div class="board_section">
+                    <div id="result">?</div>
+                </div>
+            </div>
+        </div>
+
+        <form>
+            <div class="form-group">
+                <div class="row my-3">
+                    <div class="col-1"></div>
+                    <div class="col-8">
+                        <div class="input-group input-group-lg">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Entry</span>
+                            </div>
+                            <input type="text" class="form-control" name="guess" id="fguess" area-label="Guess input" aria-describedby="guessHelp" placeholder="">
+                        </div>
+                        <small id="guessHelp" class="form-text text-muted my-1">Enter your guess for the nine letter word here</small>
+                    </div>
+                    <div class="col-3"></div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-1"></div>
+                    <div class="col-4">
+                        <button type="button" id="calculate" class="btn btn-secondary float-left">Skip</a>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" id="guessSubmit" class="btn btn-primary float-right">Check</button>
+                    </div>
+                    <div class="col-3"></div>
+                </div>
+            </div>
+        </form>
+        <div class="stat_section">
+            <div id="stats">?</div>
+        </div>
+    </div>
+</body>
+</html>

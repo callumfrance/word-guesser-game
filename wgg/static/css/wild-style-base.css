@@ -1,0 +1,206 @@
+:root {
+    color: var(--wild-txt-color);
+    background-color: var(--wild-bg-color);
+}
+
+* {
+    color: var(--wild-txt-color);
+}
+
+body {
+    min-width: 320px;
+    background-color: var(--wild-bg-color);
+}
+
+body > .container-fluid {
+    min-height: 100vh;
+}
+
+h1, h2, h3 {
+    color: var(--wild-h-color);
+}
+
+.col-md-8>ul, .col-md-8>ul>li, .col-md-8>p {
+    color: var(--wild-para-color);
+}
+
+.container-fluid {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav-wrapper {
+    max-width: 1400px;
+    border-bottom: 2px solid var(--wild-down-color);
+}
+
+.jumbotitle {
+    background: var(--wild-bg-color);
+    max-width: 1400px;
+    margin: auto;
+}
+
+.site-header {
+    background: var(--wild-banner-color);
+}
+
+.linkish {
+    text-decoration: underline;
+}
+
+.container-fluid > .row {
+    background: var(--wild-bg-color);
+    background-repeat: repeat;
+    background-size: 110vw;
+    box-shadow: 0 0 5px var(--wild-bg-color) inset;
+    padding: 24px 0px 24px 0px;
+    position: relative;
+}
+
+.hry {
+    background-image: var(--hry-image);
+    background-repeat: repeat-x;
+    background-size: auto 100%;
+    height: 32px;
+    display: block;
+    position: absolute;
+    bottom: -16px;
+    width: 100%;
+    z-index: 1;
+}
+
+.col-md-1 + .col-md-8.stockywhite {
+    /* background-image: url(../img/stockywhite.png); */
+    background-image: var(--stockywhite-image);
+    background-size: 100% 100%;
+}
+
+.col-md-1 + .col-md-8.longwhite1x7 {
+    /* background-image: url(../img/1x7longwhite.png); */
+    background-image: var(--longwhite1x7-image);
+    background-size: 100% 100%;
+}
+
+.col-md-1 + .col-md-8.tallwhite {
+    /* background-image: url(../img/tallwhite.png); */
+    background-image: var(--tallwhite-image);
+    background-size: 100% 100%;
+}
+
+.col-md-1 + .col-md-8.longwhite {
+    background: url(../img/longwhite.png);
+    background-size: 100% 100%;
+}
+
+a {
+    color: var(--link-hover);
+}
+
+a.hlong:hover, a.hshort:hover {
+/*    filter: hue-rotate(145deg); */
+    filter: var(--link-hover-effect);
+    color: var(--link-hover);
+}
+
+a.hlong:active, a.hshort:active {
+/*    filter: hue-rotate(225deg); */
+    filter: var(--link-active-effect);
+    color: var(--link-active);
+}
+
+.hlong, .hshort {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.hlong {
+    background-image: url(../img/3_1_Highlight_.png);
+}
+
+.hshort {
+    background-image: url(../img/3_2_Highlight_.png);
+}
+
+.card-img-top {
+    max-width: 60%;
+    margin: auto;
+}
+
+.embed-responsive-16by9 {
+    max-width: 85%;
+    margin: auto;
+}
+
+#jumboContainer, .pinkenContainer {
+    position: relative;
+}
+
+.lighten {
+    background: var(--filter-row-lightener);
+    filter: var(--filter-row-opacity);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.pinken {
+    background-image: url(../img/pink.png);
+    background-repeat: repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: var(--filter-row-secondary-A);
+}
+
+body > .container-fluid > .pinkenContainer:nth-child(3n-1) .pinken {
+    filter: var(--filter-row-secondary-B);
+}
+
+body > .container-fluid > .pinkenContainer:nth-child(3n-2) .pinken {
+    filter: var(--filter-row-secondary-C);
+}
+
+#jumboA {
+    background-image: url(../img/questioner.png);
+    filter: opacity(0.2);
+    background-position: left 37%;
+    background-size: 45%;
+}
+
+#jumboB {
+    background-image: url(../img/hood.png);
+    filter: opacity(1);
+    background-position: right;
+    background-size: contain;
+}
+
+#jumboA, #jumboB {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+}
+
+footer, footer .container-fluid .row {
+    background: var(--wild-down-color);
+    height: 70px;
+    text-align: center;
+    box-shadow: 0 50vh 0 50vh var(--wild-down-color);
+}
+
+footer * {
+    height: 70px;
+    padding-top: 12px;
+}
+
+footer .col-md-1 + .col-md-8 {
+    color: var(--wild-up-color);
+    background-image: none;
+}
