@@ -22,7 +22,8 @@ $(function() {
         guess: $('input[name="guess"]').val(),
       }, function(data) {
       $("#result").html(data.result),
-      $("#stats").html(data.stats);
+      $("#stats").html(data.stats),
+          console.log(data);
     });
     return false;
   });

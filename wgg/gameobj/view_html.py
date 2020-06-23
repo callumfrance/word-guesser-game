@@ -54,17 +54,44 @@ class ViewHTML(ViewAbstract):
         """Prints all the stats for the current user's run
         """
         in_stats = loads(in_stats_js_str)
-        x = self._row_st
+
+        x = '''
+            <div class="row py-4">
+                <div class="col-1"></div>
+                <div class="col-8">
+                    <ul class="list-group">'''
+        x += '          <li class="list-group-item list-group-item-success">'
         x += "Correct " + str(in_stats["correct"])
-        x += self._end + self._row_st
+        x += '          </li>'
+        x += '          <li class="list-group-item list-group-item-warning">'
         x += "Incorrect " + str(in_stats["incorrect"])
-        x += self._end + self._row_st
-        x += "Failures " + str(in_stats["failures"])
-        x += self._end + self._row_st
+        x += '          </li>'
+        x += '          <li class="list-group-item list-group-item-danger">'
+        x += "Skipped " + str(in_stats["failures"])
+        x += '          </li>'
+
+        x += '          <li class="list-group-item">'
+        x += "Correct Words "
         if in_stats["correct_words"]:
-            x += "Correct Words " + str(in_stats["correct_words"])
-            x += self._end + self._row_st
+            x += '<ul class="list-group">'
+            for y in in_stats["correct_words"]:
+                x += '<li class="list-group-item py-2 text-success border-success">' + y + '</li>'
+            x += '</ul>'
+        x += '          </li>'
+
+        x += '          <li class="list-group-item">'
+        x += "Skipped Words "
         if in_stats["failure_words"]:
-            x += "Failure Words " + str(in_stats["failure_words"])
-        x += self._end
+            x += '<ul class="list-group py-2">'
+            for y in in_stats["failure_words"]:
+                x += '<li class="list-group-item py-2 text-info border-info">' + y + '</li>'
+            x += '</ul>'
+        x += '          </li>'
+
+        x += '''    </ul>
+                </div>
+                <div class="col-3"></div>
+            </div>
+            '''
+
         return(x)
